@@ -1,0 +1,40 @@
+const Author =mongoose.model('Author',new mongoose.Schema({
+    name:String,
+    bio:String,
+    website :String
+}))
+
+const Course=mongoose.model('Course)',new mongoose.Schema({
+    name:String,
+})
+
+async function createAuthor(name,nio,website){
+    const author=new Author({
+        name,
+        bio,
+        website
+    });
+}
+
+async function createCourse(name,author){
+    const course=new Course({
+        name,
+        author
+    });
+    const result=await course.save();
+}
+
+async function listcourse(){
+    const courses =await Course
+    .find()
+    .select('name');
+
+}
+
+
+createAuthor('mosh','My bio','My website')
+
+createCourse('Node course','authorId')
+
+
+

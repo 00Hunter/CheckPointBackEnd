@@ -1,0 +1,15 @@
+const mongoose=require('mongoose');
+
+const UserLocation= new mongoose.model('Userlocation',new mongoose.Schema({
+    location:{
+        type:String,
+        required:true,
+    },
+    userId:{
+        type:mongoose.ObjectId, 
+        required:true
+    },
+}))
+
+
+exports.UserLocation=UserLocation;
