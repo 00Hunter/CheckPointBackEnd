@@ -7,8 +7,13 @@ const locatioSchema=new mongoose.Schema({
     _userId:{
         type:mongoose.Types.ObjectId
     },
-    userLocation:{
-        
+    userLocation:{ 
+        // lat:{
+        //     type:Number
+        // },
+        // lon:{
+        //     type:Number
+        // }
     }
 
 })

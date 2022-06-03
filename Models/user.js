@@ -1,7 +1,8 @@
 const mongoose=require('mongoose');
 const Joi=require('joi')
+const jwt=require('jsonwebtoken')
 
-const User=new mongoose.model('User',new mongoose.Schema({
+const userSchema=new mongoose.Schema({
     name:{
         type:String,
         required:true,
@@ -20,7 +21,17 @@ const User=new mongoose.model('User',new mongoose.Schema({
         maxlength:100
     },
 
-}))
+});
+
+userSchema.methods.genAuthToken=function(){
+    console.log(this._id)
+    const token=jwt.sign({_userId:this._id},"jwtPrivateKey")
+    return token;
+    // return;
+}
+const User=new mongoose.model('User',userSchema )
+
+// add verifictaion of emailusng code
 
 function validateUser(user){
     const schema=Joi.object({  

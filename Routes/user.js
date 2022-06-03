@@ -2,6 +2,7 @@ const express=require('express')
 const route=express.Router();
 const bcrypt=require('bcrypt');
 const {User,validateUser}=require('../Models/user')
+const jwt=require('jsonwebtoken')
 
 
 
@@ -27,8 +28,10 @@ route.post('/',async(req,res)=>{
         })
         user.password=await bcrypt.hash(user.password,salt);
         await user.save()
-        res.send(user);
-
+        // res.send(user._id);
+        const token=user.genAuthToken();
+        console.log(token)
+        res.header('x-auth-token',token).send();
     }
 
     //if not then create a new user
